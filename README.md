@@ -2,7 +2,7 @@
 
 Follow live professional golf tournaments, leaderboards and player scorecards from your Pebble.
 
-**Website:** https://n3evin.github.io/pebble-golf-live/
+**Website:** https://pebblegolflive.n3evin.com/
 
 ## Install
 
