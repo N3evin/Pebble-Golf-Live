@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pebble Golf Live</title>
+  <meta name="description" content="Follow live professional golf tournaments, leaderboards and player scorecards right from your Pebble.">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <main class="page">
+    <section class="hero panel grid-bg">
+      <div>
+        <div class="chips">
+          <span class="chip sand">PGA Tour</span>
+          <span class="chip sage">LPGA Tour</span>
+        </div>
+
+        <h1>Pebble<br>Golf Live</h1>
+
+        <p class="lead">Follow live professional golf tournaments, leaderboards and player scorecards right from your wrist. ⛳</p>
+        <p class="sublead">Built for quick tournament checks without constantly reaching for your phone.</p>
+
+        <div class="actions">
+          <a class="button" href="https://apps.repebble.com/80828e5b66b947ed982d4941" target="_blank" rel="noopener noreferrer">Get on Pebble Core Store</a>
+          <a class="button alt" href="https://apps.rebble.io/en_US/application/6ac5d5ac836dec0009992f81" target="_blank" rel="noopener noreferrer">Get on Rebble Store</a>
+        </div>
+      </div>
+
+      <div class="preview">
+        <div class="tabs" role="tablist" aria-label="Choose watch">
+          <button class="tab" type="button" role="tab" aria-selected="true" data-watch="time2">Time 2</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" data-watch="round2">Round 2</button>
+        </div>
+
+        <div class="watch-stage">
+          <div id="watchFrame" class="watch-frame">
+            <img id="watchPreview" src="assets/screenshots/time2-home.png" width="200" height="228" alt="Pebble Golf Live next major screen on Pebble Time 2">
+          </div>
+        </div>
+
+        <div class="tabs screens" role="tablist" aria-label="Choose screen">
+          <button class="tab" type="button" role="tab" aria-selected="true" data-screen="home">Next Major</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" data-screen="leaderboard">Leaderboard</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" data-screen="scorecard">Scorecard</button>
+        </div>
+
+        <p id="watchCaption" class="caption">Pebble Time 2 — real app screenshot</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Built for following tournaments</h2>
+
+      <div class="feature-grid">
+        <article class="feature">
+          <span class="feature-badge amber">Live</span>
+          <h3>Leaderboards</h3>
+          <p>Positions, total score, today's round and holes played, refreshed every 60 seconds while live.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-badge sage-bg">Players</span>
+          <h3>Scorecards</h3>
+          <p>Round summaries plus front-nine and back-nine hole-by-hole scoring.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-badge sand-bg">Browse</span>
+          <h3>Tournaments</h3>
+          <p>PGA Tour, LPGA Tour, majors, upcoming events and historical results in a compact Pebble UI.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-badge burgundy">Timeline</span>
+          <h3>At a glance</h3>
+          <p>Live event snapshots and upcoming tournament pins ready on your Pebble Timeline.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section split">
+      <article class="story dark">
+        <p class="eyebrow">Built for Pebble</p>
+        <h2>Buttons first.<br>Touch makes it quicker.</h2>
+        <p>Every core action works with physical buttons. Time 2 and Round 2 add quick taps and swipes for lists and scorecards.</p>
+      </article>
+
+      <article class="story sand">
+        <p class="eyebrow">Made because I wanted it</p>
+        <h2>Golf without the phone check.</h2>
+        <p>Pebble Golf Live started as a simple way to glance at tournament scores from my wrist. It grew into a compact golf companion for live events, schedules and player scoring.</p>
+      </article>
+    </section>
+
+    <section class="section panel store-panel">
+      <div>
+        <h2 class="section-title">Get Pebble Golf Live</h2>
+        <p>Install from the Pebble Core Store or Rebble Store.</p>
+      </div>
+
+      <div class="store-buttons">
+        <a class="button" href="https://apps.repebble.com/80828e5b66b947ed982d4941" target="_blank" rel="noopener noreferrer">Get on Pebble Core Store</a>
+        <a class="button alt" href="https://apps.rebble.io/en_US/application/6ac5d5ac836dec0009992f81" target="_blank" rel="noopener noreferrer">Get on Rebble Store</a>
+      </div>
+    </section>
+
+    <p class="fineprint">Pebble Golf Live is an independent app. Created By: N3evin</p>
+  </main>
+
+  <script>
+    (() => {
+      const frame = document.getElementById('watchFrame');
+      const image = document.getElementById('watchPreview');
+      const caption = document.getElementById('watchCaption');
+      const watchButtons = Array.from(document.querySelectorAll('[data-watch]'));
+      const screenButtons = Array.from(document.querySelectorAll('[data-screen]'));
+
+      const watches = {
+        time2: { name: 'Pebble Time 2', width: 200, height: 228, round: false },
+        round2: { name: 'Pebble Round 2', width: 260, height: 260, round: true }
+      };
+
+      const screens = {
+        home: 'next major',
+        leaderboard: 'leaderboard',
+        scorecard: 'scorecard'
+      };
+
+      const state = { watch: 'time2', screen: 'home' };
+
+      // Preload so switching is instant
+      Object.keys(watches).forEach((w) => {
+        Object.keys(screens).forEach((s) => {
+          new Image().src = `assets/screenshots/${w}-${s}.png`;
+        });
+      });
+
+      function render() {
+        const watch = watches[state.watch];
+        image.src = `assets/screenshots/${state.watch}-${state.screen}.png`;
+        image.width = watch.width;
+        image.height = watch.height;
+        image.alt = `Pebble Golf Live ${screens[state.screen]} screen on ${watch.name}`;
+        frame.classList.toggle('round', watch.round);
+        caption.textContent = `${watch.name} — real app screenshot`;
+
+        watchButtons.forEach((b) => b.setAttribute('aria-selected', String(b.dataset.watch === state.watch)));
+        screenButtons.forEach((b) => b.setAttribute('aria-selected', String(b.dataset.screen === state.screen)));
+      }
+
+      watchButtons.forEach((b) => b.addEventListener('click', () => { state.watch = b.dataset.watch; render(); }));
+      screenButtons.forEach((b) => b.addEventListener('click', () => { state.screen = b.dataset.screen; render(); }));
+    })();
+  </script>
+</body>
+</html>
